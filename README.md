@@ -8,7 +8,19 @@ The Flask app that will be used for this project consists of a simple API with t
 
 - `GET '/'`: This is a simple health check, which returns the response 'Healthy'. 
 - `POST '/auth'`: This takes a email and password as json arguments and returns a JWT based on a custom secret.
-- `GET '/contents'`: This requires a valid JWT, and returns the un-encrpyted contents of that token. 
+- `GET '/contents'`: This requires a valid JWT, and returns the un-encrpyted contents of that token.
+
+- <EXTERNAL-IP URL>: abe87849e74b711eab71d02c2250bc81-905724138.us-west-2.elb.amazonaws.com
+
+In order to check that your endpoints are healthy, run the image and you can see index page returns "Healthy"
+
+In order to get the token you have to send POST request: run this in your terminal replacing the <EMAIL> and <PASSWORD> with any string hitting the /auth endpoint 
+- export TOKEN=`curl -d '{"email":"<EMAIL>","password":"<PASSWORD>"}' -H "Content-Type: application/json" -X POST <EXTERNAL-IP URL>/auth  | jq -r '.  token'`
+
+Then you can send this token using the GET request in order to test you APIs hitting the /contents endpoint.
+- curl --request GET '<EXTERNAL-IP URL>/contents' -H "Authorization: Bearer ${TOKEN}" | jq
+You shall recived the email and password you have sent earlier.
+
 
 The app relies on a secret set as the environment variable `JWT_SECRET` to produce a JWT. The built-in Flask server is adequate for local development, but not production, so you will be using the production-ready [Gunicorn](https://gunicorn.org/) server when deploying the app.
 
