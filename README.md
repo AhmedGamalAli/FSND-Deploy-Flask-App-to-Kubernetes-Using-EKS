@@ -10,7 +10,9 @@ The Flask app that will be used for this project consists of a simple API with t
 - `POST '/auth'`: This takes a email and password as json arguments and returns a JWT based on a custom secret.
 - `GET '/contents'`: This requires a valid JWT, and returns the un-encrpyted contents of that token.
 
-- <EXTERNAL-IP URL>: abe87849e74b711eab71d02c2250bc81-905724138.us-west-2.elb.amazonaws.com
+- <EXTERNAL-IP URL>: a3f3296d7785411eaae3f0a5b9d18764-602357549.us-west-2.elb.amazonaws.com
+
+Demo to get 'Healthy': http://a3f3296d7785411eaae3f0a5b9d18764-602357549.us-west-2.elb.amazonaws.com/
 
 In order to check that your endpoints are healthy, run the image and you can see index page returns "Healthy"
 
